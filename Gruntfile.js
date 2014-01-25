@@ -29,25 +29,34 @@ module.exports = function(grunt) {
       }
     },
 
-    ejs: {
-      all: {
-        src: [
-          'views/main_page.ejs',
-          'views/questionnaire_list_page.ejs',
-          'views/questionnaire_detail_page.ejs',
-          'views/questionnaire_create_page.ejs'
-        ],
-        dest: 'views/test_mock_html/',
-        expand: true,
-        ext: '.html'
+    // ejs: {
+    //   all: {
+    //     src: [
+    //       'views/main_page.ejs',
+    //       'views/questionnaire_list_page.ejs',
+    //       'views/questionnaire_detail_page.ejs',
+    //       'views/questionnaire_create_page.ejs'
+    //     ],
+    //     dest: 'views/test_mock_html/',
+    //     expand: true,
+    //     ext: '.html'
+    //   }
+    // },
+
+    express: {
+      dev: {
+        options: {
+          script: 'app.js'
+        }
       }
     },
 
     watch: {
-      main: {
-        files: ['**/*.less', '**/*.ejs', '**/*.coffee'],
-        tasks: ['less', 'ejs', 'coffee'],
+      express: {
+        files: ['**/*.less', '**/*.ejs', '**/*.coffee', '**/*.js'],
+        tasks: ['less', 'coffee', 'express:dev'],
         options: {
+          spawn: false,
           livereload: true
         }
       }
@@ -57,7 +66,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-ejs');
+  // grunt.loadNpmTasks('grunt-ejs');
+  grunt.loadNpmTasks('grunt-express-server');
 
-  grunt.registerTask('default', ['less', 'coffee', 'ejs', 'watch']);
+  grunt.registerTask('default', ['less', 'coffee', 'express', 'watch']);
 }

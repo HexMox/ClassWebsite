@@ -14,11 +14,10 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(express.favicon());
+app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
+app.use(express.bodyParser());
+app.use(express.methodOverride()); // connect内建中间件协助处理POST请求
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,6 +27,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/index', routes.index);
+app.get('/questionnaire', routes.questionnaire);
+app.get('/questionnaire/create', routes.questionnaireCreate);
+app.get('/questionnaire/detail', routes.questionnaireDetail);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

@@ -1,0 +1,96 @@
+<link rel="stylesheet" type="text/css" href="D:\我的资料\Documents\GitHub\class-website\public\stylesheets\css\questionnaire_create.css">
+<link rel="stylesheet" type="text/css" href="D:\我的资料\Documents\GitHub\class-website\public\stylesheets\fundation\css\foundation.min.css">
+<%- include common/header.ejs %>
+
+<div class="container">
+  <form>
+    <div class="top">
+      <input type="text" name="questionnaireTitle" placeholder="请输入问卷标题">
+      <textarea name="statement" placeholder="添加问卷说明，或温馨提示"></textarea>
+    </div>
+
+    <div class="questions">
+
+    </div>
+
+    <div class="row" id="questionSelector">
+      <div class="small-2 columns">
+        <label for="quesKind" class="inline">选择问题类型:</label>
+      </div>
+      <div class="small-3 columns">
+        <select id="quesKind">
+          <option value="singleSelect">单选题</option>
+          <option value="mutiSelect">多选题</option>
+          <option value="fillBlank">填空题</option>
+        </select>
+      </div>
+      <button type="button" id="addQuestionBtn"> + </button>
+    </div>
+
+
+    <button type="button" id="submitBtn">提交</button>
+    <a class="button alert" id="giveUpBtn" href="D:\我的资料\Documents\GitHub\class-website\views\test_mock_html\views\questionnaire_list_page.html">放弃</a>
+  </form>
+</div>
+
+<%- include common/footer.ejs %>
+<script type="text/template" id="SelectQuesTemplate">
+  <div class="question">
+    <div class="row">
+      <div class="small-2 columns">
+        <label class="inline" id="questionDescribe"></label>
+      </div>
+      <div class="small-4 columns left">
+        <input type="text" name="questionTitle" placeholder="胡鑫的小宇宙是怎么来的?">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-2 columns">
+        <label for="ans1" class="inline">答案1:</label>
+      </div>
+      <div class="small-6 columns left">
+        <input type="text" name="ans1">
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-2 columns">
+        <label for="ans2" class="inline">答案2:</label>
+      </div>
+      <div class="small-6 columns left">
+        <input type="text" name="ans2">
+      </div>
+    </div>
+    <button type="button" id="addOptionBtn">添加选项</button>
+    <button type="button" id="deleteQuesBtn">移除</button>
+  </div>
+</script>
+<script type="text/template" id="fillBlankQuesTemplate">
+  <div class="question fillBlankQues">
+    <div class="row">
+      <div class="small-2 columns">
+        <label class="inline">问题描述(填空):</label>
+      </div>
+      <div class="small-4 columns left">
+        <input type="text" name="questionTitle" placeholder="胡鑫的小宇宙是怎么来的?">
+      </div>
+    </div>
+    <button type="button" id="deleteQuesBtn">移除</button>
+  </div>
+</script>
+<script type="text/template" id="optionTemplate">
+  <div class="row">
+    <div class="small-2 columns">
+      <label for="" class="inline"></label>
+    </div>
+    <div class="small-6 columns left">
+      <input type="text" name="">
+    </div>
+    <div class="small-2 columns left">
+      <button id="deleteOptionBtn" type="button" class="inline">移除选项</button>
+    </div>
+  </div>
+</script>
+<script type="text/javascript" src="D:\我的资料\Documents\GitHub\class-website\public\javascripts\js\questionnaire.js"></script>
+<script type="text/javascript" src="D:\我的资料\Documents\GitHub\class-website\public\javascripts\js\questionnaire_create.js"></script>
+<script src="http://localhost:35729/livereload.js"></script>

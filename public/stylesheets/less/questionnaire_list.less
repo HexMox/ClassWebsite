@@ -1,0 +1,67 @@
+@import 'common.less';
+@import 'questionnaire.less';
+
+.content {
+  .middle(900px);
+  background-color: rgba(225,225,225,0.8);
+  .tips {
+    padding: 12px;
+    .middle(80%);
+    overflow: hidden;
+    margin-top: 3em;
+    .feizhou {
+      width: 300px;
+      height: 240px;
+      background: url(D:/我的资料/Documents/GitHub/class-website/public/images/feizhou.jpg) no-repeat;
+      float: left;
+      margin: 12px;
+    }
+    .sign {
+      float: right;
+      font-size: 15px;
+      font-style: italic;
+    }
+  }
+  .questionnaireList {
+    .listHeader {}
+    #search {
+      height: 37px + 10px;
+      padding-top: 5px;
+      background-color: #f7f7f7;
+      background-image: -webkit-linear-gradient(top, #ffffff, #eaeaea);
+      // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid #CACACA;
+      input {
+        display: block;
+        margin: 0;
+        width: 200px;
+        border-radius: 18px;
+      }
+    }
+    .listBody {
+      ul {
+        list-style: none;
+        margin: 0;
+        li {
+          .middle(90%);
+          padding: 12px;
+          border-bottom: 1px solid #f7f7f7;
+          .questionnaire {
+            .questionnaireKind {
+              display: block;
+              float: left;
+              margin-top: 2.5px;
+              margin-right: 6px;
+              width: 20px;
+              height: 20px;
+              background: red;
+            }
+            .questionnaireSituation {
+              font-size: .8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

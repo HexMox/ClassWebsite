@@ -1,0 +1,38 @@
+<link rel="stylesheet" type="text/css" href="D:\我的资料\Documents\GitHub\class-website\public\stylesheets\css\questionnaire_list.css">
+<link rel="stylesheet" type="text/css" href="D:\我的资料\Documents\GitHub\class-website\public\stylesheets\fundation\css\foundation.min.css">
+<%- include common/header.ejs %>
+
+<div class="content">
+  <div class="tips">
+    <div class="feizhou"></div>
+    <h2>“ 任何人不得以首席鉴黄师的名义发起一份问卷。 ”</h2>
+    <p class="sign">—— 郭浩翀（非洲金克拉农业驻华大使）</p>
+    <a class="button" href="questionnaire_create_page.html">新建问卷</a>
+  </div>
+  <div class="questionnaireList">
+    <div class="listHeader">
+    </div>
+    <div id="search">
+      <input type="text" name="title" placeholder="seach for...">
+    </div>
+    <div class="listBody">
+      <ul>
+        <li>
+          <div class="questionnaire">
+            <span class="questionnaireKind"></span>
+            <span> | </span>
+            <a class="questionnaireTitle" href="questionnaire_detail_page.html">胡鑫的小宇宙有多大？</a>
+            <span class="questionnaireSituation">(调查中)</span>
+            <div class="details">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%- include common/footer.ejs %>
+<%- include common/login.ejs %>
+<script type="text/javascript" src="D:\我的资料\Documents\GitHub\class-website\public\javascripts\js\questionnaire.js"></script>
+<script src="http://localhost:35729/livereload.js"></script>

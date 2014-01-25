@@ -1,0 +1,44 @@
+@import 'common.less';
+@import 'questionnaire.less';
+
+.container {
+  .middle(900px);
+  form {
+    .top {
+      .middle(60%);
+      textarea {
+        height: 120px;
+        resize: none;
+      }
+    }
+
+    #questionSelector {
+      .small-2 {
+        width: 100px;
+      }
+      div {
+        padding: 0;
+        height: 39px;
+      }
+      button {
+        padding: 0 2rem;
+        font-size: 22px;
+        height: 38px;
+        margin: 0;
+      }
+    }
+
+    .questions {
+      .question {
+        border: 1px solid #ccc;
+        margin: .9em 0;
+        padding: 12px;
+        button {
+          height: 40px;
+          padding: 0 12px;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

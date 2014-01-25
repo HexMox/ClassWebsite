@@ -1,0 +1,228 @@
+/**************************** global ****************************/
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font: 14px "Microsoft YaHei", Arial, sans-serif;
+}
+a {
+  color: #333333;
+  text-decoration: none;
+}
+/**************************** login ****************************/
+.loginBox {
+  width: 242px;
+  position: fixed;
+  top: 34%;
+  left: -212px;
+}
+.loginBox #loginBtn {
+  padding: 0;
+  float: right;
+}
+.loginBox #loginBtn p {
+  margin-bottom: 0;
+  padding: 6px;
+  color: #eee;
+  font-weight: bold;
+  font-size: 17px;
+}
+.loginBox #loginBtn p img {
+  width: 18px;
+  height: 18px;
+}
+.loginBox .loginForm {
+  width: 212px;
+  padding-top: 30px;
+  background: url("D:/我的资料/Documents/GitHub/class-website/public/images/bg_dark.jpg");
+  float: left;
+}
+.loginBox .loginForm input::-webkit-input-placeholder {
+  font-style: italic;
+  color: #bbb;
+}
+/**************************** user_info ****************************/
+.userBox {
+  width: 242px;
+  color: #fbfbfb;
+  position: fixed;
+  top: 34%;
+  left: -212px;
+}
+.userBox .visibleArea {
+  background-color: #008cba;
+  float: right;
+}
+.userBox .visibleArea p {
+  margin-bottom: 0;
+  padding: 6px;
+  font-size: 18px;
+}
+.userBox .visibleArea p img {
+  width: 18px;
+  height: 18px;
+}
+.userBox .invisibleArea {
+  width: 212px;
+}
+.userBox .invisibleArea .userInfo {
+  overflow: hidden;
+  padding: 7px 25px;
+  background: url(D:/我的资料/Documents/GitHub/class-website/public/images/bg_dark.jpg);
+}
+.userBox .invisibleArea .userInfo .details {
+  line-height: 25px;
+  float: left;
+}
+.userBox .invisibleArea .userInfo .details .userSituation {
+  float: left;
+  margin-left: 7px;
+}
+.userBox .invisibleArea .userInfo .details .userNameBox {
+  font-size: 17px;
+  font-weight: bold;
+  float: left;
+}
+.userBox .invisibleArea .userInfo .headImage {
+  height: 50px;
+  width: 50px;
+  background: url(D:/我的资料/Documents/GitHub/class-website/public/images/huxin.jpg);
+  background-position: -110px -70px;
+  border-radius: 30px;
+  float: left;
+  margin-right: .3em;
+}
+.userBox .invisibleArea .userInfo .userSignBox {
+  float: left;
+  font-size: 15px;
+  font-style: italic;
+}
+.userBox .invisibleArea .userBusiness {
+  background: rgba(0, 0, 0, 0.7);
+}
+.userBox .invisibleArea .userBusiness div {
+  width: 65%;
+  margin: 0 auto;
+  padding: .5em;
+  border-bottom: 1px solid #ababab;
+}
+.userBox .invisibleArea .userBusiness div:last-child {
+  border-bottom: none;
+}
+/**************************** header ****************************/
+header {
+  height: 59px;
+  margin: 0 0 40px 0;
+  background: rgba(238, 238, 238, 0.8);
+  min-width: 900px;
+  text-align: center;
+}
+header .container {
+  width: 900px;
+  margin: 0 auto;
+}
+header .container #logo {
+  display: block;
+  float: left;
+  height: 58px;
+  line-height: 58px;
+  background: url("D:/我的资料/Documents/GitHub/class-website/public/images/brand.png");
+  background-size: 61px 58px;
+  background-repeat: no-repeat;
+  padding-left: 61px;
+  font-family: 'Brush Script Std' Arial;
+  font-size: 24px;
+}
+header .container #nav {
+  float: right;
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+header .container #nav ul {
+  margin: 0;
+  padding: 7px 0 0 0;
+  height: 44px;
+}
+header .container #nav ul li {
+  display: block;
+  float: left;
+  cursor: pointer;
+  margin-right: 50px;
+}
+header .container #nav ul li a {
+  display: block;
+  padding: .5em;
+  font-size: 18px;
+  line-height: 34px;
+  color: #3c4147;
+}
+header .container #nav ul li a:hover {
+  color: rgba(60, 65, 71, 0.9);
+}
+header .container #nav ul li:last-child {
+  margin-right: 0;
+}
+header .container #nav ul li.active {
+  color: rgba(60, 65, 71, 0.9);
+}
+header .container #nav #underline {
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  background: red;
+}
+/**************************** footer ****************************/
+footer {
+  margin-top: 2em;
+}
+footer .container {
+  width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid #ccc;
+  color: #888;
+}
+footer .container p {
+  margin: 1.5em 0;
+  padding-left: 50px;
+  font-family: 'Brush Script Std' Arial;
+}
+#underline {
+  left: 0;
+  width: 54px;
+}
+.content {
+  width: 900px;
+  margin: 0 auto;
+}
+.content .intro {
+  color: #3F4652;
+  overflow: hidden;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 3em;
+  padding: 1.5em;
+}
+.content .intro img {
+  width: 225px;
+  height: 273px;
+}
+.content .intro .huxin {
+  float: left;
+}
+.content .intro .liankai {
+  float: right;
+}
+.content .intro .text {
+  color: #3F4652;
+  padding: 1.5em;
+  overflow: hidden;
+}
+.content .intro .text .sign {
+  float: right;
+  font-size: 15px;
+  font-style: italic;
+}
+.content .intro .text p {
+  clear: both;
+}

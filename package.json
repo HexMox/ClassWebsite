@@ -1,0 +1,22 @@
+{
+  "name": "Class-website",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "ejs": "*",
+    "mongodb": "*",
+    "connect-mongo": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.8.2",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-express-server": "~0.4.11",
+    "grunt-ejs": "~0.1.0"
+  }
+}

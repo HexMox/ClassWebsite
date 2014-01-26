@@ -1,5 +1,7 @@
 (function() {
-  var hideLoginBox, init, interceptClickEvent, loginBox, loginBtn, loginForm, showLoginBox, userLogin;
+  var ENTER_KEY, hideLoginBox, init, interceptClickEvent, isCallLog, logSuccessCallback, loginBox, loginBtn, loginForm, nameInput, psdInput, showLoginBox, userLogin;
+
+  ENTER_KEY = 13;
 
   loginBox = $('.loginBox');
 
@@ -7,11 +9,16 @@
 
   loginForm = $('.loginForm');
 
+  psdInput = $('input[name="password"]');
+
+  nameInput = $('input[name="name"]');
+
   init = function() {
     loginBtn.mousemove(showLoginBox);
     $(document).click(hideLoginBox);
     loginBox.click(interceptClickEvent);
-    return loginBtn.click(userLogin);
+    loginBtn.click(userLogin);
+    return psdInput.keypress(isCallLog);
   };
 
   showLoginBox = function() {
@@ -33,7 +40,23 @@
   };
 
   userLogin = function() {
-    return "";
+    var user;
+    user = {
+      name: nameInput.val(),
+      password: psdInput.val()
+    };
+    $.post('/login', user, logSuccessCallback);
+    return psdInput.val('');
+  };
+
+  isCallLog = function(event) {
+    if (event.keyCode === ENTER_KEY) {
+      return userLogin();
+    }
+  };
+
+  logSuccessCallback = function(response) {
+    return alert(response);
   };
 
   init();

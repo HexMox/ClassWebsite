@@ -56,7 +56,11 @@
   };
 
   logSuccessCallback = function(response) {
-    return alert(response);
+    if (response === 'OK') {
+      return window.location.reload();
+    } else {
+      return alert(response);
+    }
   };
 
   init();

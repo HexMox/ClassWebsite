@@ -50,16 +50,18 @@ a {
   top: 34%;
   left: -212px;
 }
-.userBox .visibleArea {
-  background-color: #008cba;
+.userBox #logoutBtn {
+  padding: 0;
   float: right;
 }
-.userBox .visibleArea p {
+.userBox #logoutBtn p {
   margin-bottom: 0;
   padding: 6px;
-  font-size: 18px;
+  color: #eee;
+  font-weight: bold;
+  font-size: 17px;
 }
-.userBox .visibleArea p img {
+.userBox #logoutBtn p img {
   width: 18px;
   height: 18px;
 }

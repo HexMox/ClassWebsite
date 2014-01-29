@@ -1,5 +1,5 @@
 // 用户模块
-var mongodb = require('./db');
+var database = require('./db');
 
 function User(user) {
   this.name = user.name;
@@ -17,53 +17,43 @@ User.prototype.save = function(callback) {
     password: this.password,
     sign: this.sign
   };
-  mongodb.getDb(function (err, db) {
+  database.getDb(function (err, db) {
     if (err) {
-      mongodb.closeDb();
-      return callback(err);
+      throw err;
     }
 
     db.collection('users', function (err, collection) {
       if (err) {
-        mongodb.closeDb();
-        return callback(err);
+        throw err;
       }
 
       collection.insert(user, {safe: true}, function (err, user) {
-        mongodb.closeDb();
         if (err) {
-          return callback(err);
+          throw err;
         }
 
         callback(null, user[0]);
       });  // insert user
     });  // create/open collection
-  });  // mongodb.open
+  });  // database.open
 };
 
 User.get = function(name, callback) {
-  mongodb.getDb(function (err, db) {
-    if (err) {
-      mongodb.closeDb();
-      return callback(err);
-    }
-
+  database.getDb(function (db) {
     db.collection('users', function (err, collection) {
       if (err) {
-        mongodb.closeDb();
-        return callback(err);
+        throw err;
       }
 
-      collection.findOne(name, function (err, user) {
-        mongodb.closeDb();
+      collection.findOne({'name': name}, function (err, user) {
         if (err) {
-          return callback(err);
+          throw err;
         }
 
         callback(null, user);
       });  // find user
     });  // open user collection
-  });  // mongodb.open
+  });  // database.open
 };
 
 User.prototype.getAll = function(callback) {

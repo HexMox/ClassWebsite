@@ -35,6 +35,9 @@ isCallLog = (event) ->
     userLogin()
 
 logSuccessCallback = (response) ->
-  alert response
+  if response is 'OK'
+    window.location.reload()
+  else
+    alert response
 
 init()

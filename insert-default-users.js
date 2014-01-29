@@ -1,5 +1,5 @@
 var database = require('./models/db');
-var DEFAULT_PSD = 8888;
+var DEFAULT_PSD = '8888';
 
 var users = [
   {
@@ -25,16 +25,11 @@ function insertUser(i) {
         throw err;
       }
 
-      collection.findOne({name: users[i].name}, function (err, user) {
-        if (!user) {
-          collection.insert(users[i], {safe: true}, function (err, user) {
-            if (err) {
-              return console.log(err);
-            }
-            // 
-          });
+      collection.save(users[i], {safe: true}, function (err, user) {
+        if (err) {
+          return console.log(err);
         }
-        // 
+        console.log(user);
       });
     });
   })

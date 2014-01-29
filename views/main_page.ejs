@@ -27,6 +27,10 @@
 </div>
 
 <%- include common/footer.ejs %>
-<%- include common/user_info.ejs %>
+<% if (user) { %>
+  <%- include common/user_info.ejs %>
+<% } else { %>
+  <%- include common/login.ejs %>
+<% } %>
 <script src="http://localhost:35729/livereload.js"></script>
 <script type="text/javascript" src="/javascripts/js/main.js"></script>

@@ -1,16 +1,17 @@
 (function() {
-  var hideUserCard, init, interceptClickEvent, showUserCard, userBox, userCard, visibleArea;
+  var hideUserCard, init, interceptClickEvent, logoutBtn, showUserCard, userBox, userCard, userLogout;
 
   userBox = $('.userBox');
 
-  visibleArea = $('.visibleArea');
+  logoutBtn = $('#logoutBtn');
 
   userCard = $('.invisibleArea');
 
   init = function() {
-    visibleArea.mousemove(showUserCard);
+    logoutBtn.mousemove(showUserCard);
     $(document).click(hideUserCard);
-    return userBox.click(interceptClickEvent);
+    userBox.click(interceptClickEvent);
+    return logoutBtn.click(userLogout);
   };
 
   showUserCard = function() {
@@ -29,6 +30,14 @@
 
   interceptClickEvent = function(event) {
     return event.stopPropagation();
+  };
+
+  userLogout = function() {
+    return $.post('/logout', function(response) {
+      if (response === 'OK') {
+        return window.location.reload();
+      }
+    });
   };
 
   init();

@@ -17,20 +17,20 @@ User.prototype.save = function(callback) {
     password: this.password,
     sign: this.sign
   };
-  mongodb.open(function (err, db) {
+  mongodb.getDb(function (err, db) {
     if (err) {
-      mongodb.close();
+      mongodb.closeDb();
       return callback(err);
     }
 
     db.collection('users', function (err, collection) {
       if (err) {
-        mongodb.close();
+        mongodb.closeDb();
         return callback(err);
       }
 
       collection.insert(user, {safe: true}, function (err, user) {
-        mongodb.close();
+        mongodb.closeDb();
         if (err) {
           return callback(err);
         }
@@ -42,20 +42,20 @@ User.prototype.save = function(callback) {
 };
 
 User.get = function(name, callback) {
-  mongodb.open(function (err, db) {
+  mongodb.getDb(function (err, db) {
     if (err) {
-      mongodb.close();
+      mongodb.closeDb();
       return callback(err);
     }
 
     db.collection('users', function (err, collection) {
       if (err) {
-        mongodb.close();
+        mongodb.closeDb();
         return callback(err);
       }
 
       collection.findOne(name, function (err, user) {
-        mongodb.close();
+        mongodb.closeDb();
         if (err) {
           return callback(err);
         }

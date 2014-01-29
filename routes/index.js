@@ -39,8 +39,8 @@ function questionnaireDetail(req, res) {
 
 function logHandler(req, res) {
   var md5 = crypto.createHash('md5'),
-      password = md5.update(req.body.user.password).digest('hex');
-  User.get(req.body.user.name, function (err, user) {
+      password = md5.update(req.body.password).digest('hex');
+  User.get(req.body.name, function (err, user) {
     if (!user) {
       return res.send('没有此用户');
     }
@@ -54,7 +54,7 @@ function logHandler(req, res) {
 
 function checkLogin(req, res, next) {
   if (!req.session.user) {
-    res.redirect('/login');
+    res.redirect('/forbidden');
   }
   next();
 }

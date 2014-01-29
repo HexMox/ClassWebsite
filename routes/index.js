@@ -55,7 +55,6 @@ function loginHandler(req, res) {
 }
 
 function logoutHandler(req, res) {
-  console.log('logout!')
   req.session.user = null;
   res.send(200);
   // 通过浏览器端刷新

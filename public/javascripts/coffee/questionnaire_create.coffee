@@ -62,6 +62,27 @@ updateOptionsNum = (disappearOption) ->
     item.find('input').attr 'name', 'ans' + num 
 
 submitQustionnaire = ->
-  "get the .question div and deal one by one"
+  questionnaire = {
+    title: $('input[name="questionnaireTitle"]').val(),
+    statement: $('.statement').val(),
+    questions: []
+  }
+  $('.question').each ->
+    pushQuestionData questionnaire, this
+  $.post '/createQuestionnaire', JSON.stringify questionnaire, showResponse
+
+pushQuestionData = (questionnaire, question) ->
+  item = $ question 
+  question = {
+    title: item.find('input[name="questionTitle"]').val()
+  }
+  if item.hasClass 'fillBlankQues'
+    question.kind = 'fillBlank'
+  else
+    question.options = []
+    question.kind = if item.hasClass 'singleSelect' then 'singleSelect' else 'multiSelect'
+  item.find('.answer').each ->
+    question.options.push $(this).val()
+  questionnaire.questions.push question
 
 init()

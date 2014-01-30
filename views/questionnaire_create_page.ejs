@@ -6,7 +6,7 @@
   <form>
     <div class="top">
       <input type="text" name="questionnaireTitle" placeholder="请输入问卷标题">
-      <textarea name="statement" placeholder="添加问卷说明，或温馨提示"></textarea>
+      <textarea class="statement" placeholder="添加问卷说明，或温馨提示"></textarea>
     </div>
 
     <div class="questions">
@@ -20,7 +20,7 @@
       <div class="small-3 columns">
         <select id="quesKind">
           <option value="singleSelect">单选题</option>
-          <option value="mutiSelect">多选题</option>
+          <option value="multiSelect">多选题</option>
           <option value="fillBlank">填空题</option>
         </select>
       </div>
@@ -51,7 +51,7 @@
         <label for="ans1" class="inline">答案1:</label>
       </div>
       <div class="small-6 columns left">
-        <input type="text" name="ans1">
+        <input class="answer" type="text" name="ans1">
       </div>
     </div>
     <div class="row">
@@ -59,7 +59,7 @@
         <label for="ans2" class="inline">答案2:</label>
       </div>
       <div class="small-6 columns left">
-        <input type="text" name="ans2">
+        <input class="answer" type="text" name="ans2">
       </div>
     </div>
     <button type="button" id="addOptionBtn">添加选项</button>
@@ -85,7 +85,7 @@
       <label for="" class="inline"></label>
     </div>
     <div class="small-6 columns left">
-      <input type="text" name="">
+      <input class="answer" type="text" name="">
     </div>
     <div class="small-2 columns left">
       <button id="deleteOptionBtn" type="button" class="inline">移除选项</button>

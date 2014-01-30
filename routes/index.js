@@ -1,8 +1,11 @@
 // routes and handlers
 var crypto = require('crypto');
 var User = require('../models/user');
-;
+
 module.exports = function(app) {
+  app.get('/forbidden', forbidHandler);
+  app.get('/404', notFoundHandler);
+
   app.get('/', index);
   app.get('/index', index);
 
@@ -18,7 +21,16 @@ module.exports = function(app) {
 
   app.post('/login', loginHandler);
   app.post('/logout', logoutHandler);
+  app.post('/questionnaireCreate', createQuestionnaireHandler);
 };
+
+function forbidHandler(req, res) {
+  res.render('403');
+}
+
+function notFoundHandler(req, res) {
+  res.render('404');
+}
 
 function index(req, res) {
   res.render('main_page', {
@@ -27,15 +39,21 @@ function index(req, res) {
 }
 
 function questionnaire(req, res) {
-  res.render('questionnaire_list_page');
+  res.render('questionnaire_list_page', {
+    user: req.session.user
+  });
 }
 
 function questionnaireCreate(req, res) {
-  res.render('questionnaire_create_page');
+  res.render('questionnaire_create_page', {
+    user: req.session.user
+  });
 }
 
 function questionnaireDetail(req, res) {
-  res.render('questionnaire_detail_page');
+  res.render('questionnaire_detail_page', {
+    user: req.session.user
+  });
 }
 
 function loginHandler(req, res) {
@@ -60,9 +78,14 @@ function logoutHandler(req, res) {
   // 通过浏览器端刷新
 }
 
+function createQuestionnaireHandler() {
+  
+}
+
 function checkLogin(req, res, next) {
-  if (!req.session.user) {
-    res.redirect('/forbidden');
+  if (req.session.user == null) {
+    res.redirect('/');
+  } else {
+    next();
   }
-  next();
 }

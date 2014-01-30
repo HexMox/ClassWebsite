@@ -1,5 +1,5 @@
 (function() {
-  var addOption, addQuestion, addQuestionBtn, deleteQuestion, getOptionTemplate, getQuesTemplate, init, questionBox, submitBtn, submitQustionnaire, updateOptionsNum;
+  var addOption, addQuestion, addQuestionBtn, deleteQuestion, getOptionTemplate, getQuesTemplate, init, pushQuestionData, questionBox, submitBtn, submitQustionnaire, updateOptionsNum;
 
   questionBox = $('.questions');
 
@@ -86,7 +86,34 @@
   };
 
   submitQustionnaire = function() {
-    return "get the .question div and deal one by one";
+    var questionnaire;
+    questionnaire = {
+      title: $('input[name="questionnaireTitle"]').val(),
+      statement: $('.statement').val(),
+      questions: []
+    };
+    $('.question').each(function() {
+      return pushQuestionData(questionnaire, this);
+    });
+    return $.post('/createQuestionnaire', JSON.stringify(questionnaire, showResponse));
+  };
+
+  pushQuestionData = function(questionnaire, question) {
+    var item;
+    item = $(question);
+    question = {
+      title: item.find('input[name="questionTitle"]').val()
+    };
+    if (item.hasClass('fillBlankQues')) {
+      question.kind = 'fillBlank';
+    } else {
+      question.options = [];
+      question.kind = item.hasClass('singleSelect') ? 'singleSelect' : 'multiSelect';
+    }
+    item.find('.answer').each(function() {
+      return question.options.push($(this).val());
+    });
+    return questionnaire.questions.push(question);
   };
 
   init();

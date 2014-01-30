@@ -4,11 +4,13 @@ var DEFAULT_PSD = '8888';
 var users = [
   {
     name: 'huxin',
+    nickname: '胡鑫',
     password: DEFAULT_PSD,
     sign: '宅是一种文化'
   },
   {
     name: 'huangliankai',
+    nickname: '黄炼楷',
     password: DEFAULT_PSD,
     sign: '有节操的班长才是好班长'
   }
@@ -29,7 +31,8 @@ function insertUser(i) {
         if (err) {
           return console.log(err);
         }
-        console.log(user);
+
+        console.log(user)
       });
     });
   })

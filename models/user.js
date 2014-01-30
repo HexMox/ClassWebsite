@@ -11,33 +11,6 @@ function User(user) {
 
 module.exports = User;
 
-User.prototype.save = function(callback) {
-  var user = {
-    name: this.name,
-    password: this.password,
-    sign: this.sign
-  };
-  database.getDb(function (err, db) {
-    if (err) {
-      throw err;
-    }
-
-    db.collection('users', function (err, collection) {
-      if (err) {
-        throw err;
-      }
-
-      collection.insert(user, {safe: true}, function (err, user) {
-        if (err) {
-          throw err;
-        }
-
-        callback(null, user[0]);
-      });  // insert user
-    });  // create/open collection
-  });  // database.open
-};
-
 User.get = function(name, callback) {
   database.getDb(function (db) {
     db.collection('users', function (err, collection) {
@@ -50,6 +23,7 @@ User.get = function(name, callback) {
           throw err;
         }
 
+        console.log(user)
         callback(null, user);
       });  // find user
     });  // open user collection

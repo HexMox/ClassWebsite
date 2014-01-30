@@ -73,24 +73,16 @@ a {
   padding: 7px 25px;
   background: url(/images/bg_dark.jpg);
 }
-.userBox .invisibleArea .userInfo .details {
+.userBox .invisibleArea .userInfo .userNameBox {
   line-height: 25px;
-  float: left;
-}
-.userBox .invisibleArea .userInfo .details .userSituation {
-  float: left;
-  margin-left: 7px;
-}
-.userBox .invisibleArea .userInfo .details .userNameBox {
   font-size: 17px;
   font-weight: bold;
   float: left;
 }
 .userBox .invisibleArea .userInfo .headImage {
+  display: block;
   height: 50px;
   width: 50px;
-  background: url(/images/huxin.jpg);
-  background-position: -110px -70px;
   border-radius: 30px;
   float: left;
   margin-right: .3em;

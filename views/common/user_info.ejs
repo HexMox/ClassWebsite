@@ -5,17 +5,14 @@
 
     <div class="invisibleArea">
       <div class="userInfo">
-        <div class="headImage"></div>
+        <img class="headImage" src="/images/<%= user.name %>.jpg">
 
-        <div class="details">
-          <div class="userNameBox">
-            <div class="userName">胡鑫</div>
-          </div>
-          <div class="userSituation">(在线)</div>
+        <div class="userNameBox">
+          <div class="userName"><%= user.nickname %></div>
         </div>
 
         <div class="userSignBox">
-          <div class="userSign">宅是一种文化</div>
+          <div class="userSign"><%= user.sign %></div>
         </div>
       </div>
 

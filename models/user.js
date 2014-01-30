@@ -23,7 +23,6 @@ User.get = function(name, callback) {
           throw err;
         }
 
-        console.log(user)
         callback(null, user);
       });  // find user
     });  // open user collection

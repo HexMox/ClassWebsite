@@ -1,6 +1,8 @@
 // routes and handlers
 var crypto = require('crypto');
 var User = require('../models/user');
+var Questionnaire = require('../models/questionnaire');
+var QuestionnaireResult = require('../models/questionnaireResult');
 
 module.exports = function(app) {
   app.get('/forbidden', forbidHandler);

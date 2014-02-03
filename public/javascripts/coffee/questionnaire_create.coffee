@@ -69,6 +69,7 @@ submitQustionnaire = ->
   }
   $('.question').each ->
     pushQuestionData questionnaire, this
+  console.log JSON.stringify questionnaire
   $.post '/createQuestionnaire', JSON.stringify questionnaire, showResponse
 
 pushQuestionData = (questionnaire, question) ->
@@ -84,5 +85,8 @@ pushQuestionData = (questionnaire, question) ->
   item.find('.answer').each ->
     question.options.push $(this).val()
   questionnaire.questions.push question
+
+showResponse = (response) ->
+  ""
 
 init()

@@ -18,12 +18,12 @@ module.exports = function(app) {
   app.get('/questionnaire/create', checkLogin);
   app.get('/questionnaire/create', questionnaireCreate);
 
-  app.get('/questionnaire/detail', checkLogin);
-  app.get('/questionnaire/detail', questionnaireDetail);
+  app.get('/questionnaire/:_id', checkLogin);
+  app.get('/questionnaire/:_id', questionnaireDetail);
 
   app.post('/login', loginHandler);
   app.post('/logout', logoutHandler);
-  app.post('/questionnaireCreate', createQuestionnaireHandler);
+  app.post('/createQuestionnaire', createQuestionnaireHandler);
 };
 
 function forbidHandler(req, res) {
@@ -41,8 +41,16 @@ function index(req, res) {
 }
 
 function questionnaire(req, res) {
-  res.render('questionnaire_list_page', {
-    user: req.session.user
+  Questionnaire.getCheckedAll(function (err, questionnaires) {
+    if (err) {
+      // 返回错误信息
+      res.redirect('back');
+    }
+    console.log(questionnaires);
+    res.render('questionnaire_list_page', {
+      user: req.session.user,
+      questionnaires: questionnaires
+    });
   });
 }
 
@@ -53,8 +61,15 @@ function questionnaireCreate(req, res) {
 }
 
 function questionnaireDetail(req, res) {
-  res.render('questionnaire_detail_page', {
-    user: req.session.user
+  Questionnaire.getOneCheckedById(req.params._id, function (err, questionnaire) {
+    if (err) {
+      // 返回错误信息
+      res.redirect('back');
+    }
+    res.render('questionnaire_detail_page', {
+      user: req.session.user,
+      questionnaire: questionnaire
+    });
   });
 }
 
@@ -80,8 +95,22 @@ function logoutHandler(req, res) {
   // 通过浏览器端刷新
 }
 
-function createQuestionnaireHandler() {
-  
+function createQuestionnaireHandler(req, res) {
+  if (!req.session.user)
+    res.send('你还未登录');
+  var questionnaire = req.body;
+  questionnaire.author = req.session.user;
+  questionnaire.condition = 'notChecked';
+  var naire = new Questionnaire(questionnaire);
+
+  console.log(naire);
+  naire.checkedSave(function (err, naire) {
+    if (naire) {
+      res.send(200);
+    } else {
+      res.send('error!');
+    }
+  });
 }
 
 function checkLogin(req, res, next) {

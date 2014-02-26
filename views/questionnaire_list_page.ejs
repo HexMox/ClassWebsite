@@ -17,16 +17,32 @@
     </div>
     <div class="listBody">
       <ul>
-        <li>
+   <!-- <li>
           <div class="questionnaire">
-            <span class="questionnaireKind"></span>
+            <span class="author"></span>
             <span> | </span>
             <a class="questionnaireTitle" href="/questionnaire/detail">胡鑫的小宇宙有多大？</a>
             <span class="questionnaireSituation">(调查中)</span>
             <div class="details">
             </div>
           </div>
+        </li> -->
+        <% for (var i = 0, len = questionnaires.length; i < len; i+= 1) { %>
+        <li>
+          <div class="questionnaire">
+            <span class="author"></span>
+            <span> | </span>
+            <a class="questionnaireTitle" href="/questionnaire/<%= questionnaires[i]._id %>">
+              <%= questionnaires[i].title %>
+            </a>
+            <span class="questionnaireSituation">
+              (<%= questionnaires[i] == 'done' ? '已完成' : '调查中' %>)
+            </span>
+            <div class="details">
+            </div>
+          </div>
         </li>
+        <% } %>
       </ul>
     </div>
   </div>

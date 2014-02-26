@@ -6,7 +6,6 @@ function User(user) {
   this.password = user.password;
   this.sign = user.sign;
   // this.headImgUrl = 
-  // this.questionnaire = 
 }
 
 module.exports = User;
@@ -29,6 +28,6 @@ User.get = function(name, callback) {
   });  // database.open
 };
 
-User.prototype.getAll = function(callback) {
+User.getAll = function(callback) {
   // a object contains all msg expect psd
 };

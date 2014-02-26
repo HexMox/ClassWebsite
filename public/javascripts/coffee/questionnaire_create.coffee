@@ -70,12 +70,12 @@ submitQustionnaire = ->
   $('.question').each ->
     pushQuestionData questionnaire, this
   console.log JSON.stringify questionnaire
-  $.post '/createQuestionnaire', JSON.stringify questionnaire, showResponse
+  $.post '/createQuestionnaire', questionnaire, showResponse
 
 pushQuestionData = (questionnaire, question) ->
   item = $ question 
   question = {
-    title: item.find('input[name="questionTitle"]').val()
+    describe: item.find('input[name="questionTitle"]').val()
   }
   if item.hasClass 'fillBlankQues'
     question.kind = 'fillBlank'
@@ -87,6 +87,10 @@ pushQuestionData = (questionnaire, question) ->
   questionnaire.questions.push question
 
 showResponse = (response) ->
-  ""
+  if response is 'OK'
+    alert '提交成功'
+    # redirect
+  else
+    alert response
 
 init()

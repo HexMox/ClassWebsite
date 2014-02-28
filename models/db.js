@@ -11,34 +11,11 @@ var mongodb = new Db(
   {safe: true}
 );
 
-// var flag = false;
-// var instance = null;
-
-// console.log("mongodb: ", mongodb);
-// mongodb.open(function (err, db) {
-//   console.log("running...");
-//   if (err) {
-//     throw err;
-//   }
-//   flag = true;
-//   instance = db;
-//   console.log("flag: ", flag);
-// });
-
-// console.log("A")
-// while (1) {
-//   //console.log("outer: ", flag);
-//   if (flag) {
-//     break;
-//   }
-// }
-
-// console.log("am i running..")
-// module.exports = instance;
 var instance = null;
 var lock = false;
 var queue = [];
 
+// 实现单连接
 var initialDatabase = function (callback) {
   lock = true;
   mongodb.open(function (err, db) {
@@ -50,7 +27,7 @@ var initialDatabase = function (callback) {
       queue.forEach(function (cb) {
         cb(instance);
       });
-      queue = []
+      queue = [];
     }
   });
 }
@@ -63,6 +40,8 @@ module.exports = {
       if (lock == false) {
         initialDatabase(callback);
       } else {
+        // I think: it happens only when the database is initing(but haven't completed),
+        // and several `callback` come in.
         queue.push(callback);
       }
     }

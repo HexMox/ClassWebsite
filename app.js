@@ -17,7 +17,6 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
-// app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride()); // connect内建中间件协助处理POST请求
 
@@ -38,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+app.use(express.logger('dev'));
 
 routes(app);
 

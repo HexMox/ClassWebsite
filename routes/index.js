@@ -77,7 +77,7 @@ function loginHandler(req, res) {
   var md5 = crypto.createHash('md5'),
       // password = md5.update(req.body.password).digest('hex');
       password = req.body.password;  // 由于没有注册功能，导入默认用户时没有MD5加密，后面加上
-  User.get(req.body.name, function (err, user) {
+  User.getByName(req.body.name, function (err, user) {
     if (!user) {
       return res.send('没有此用户');
     }

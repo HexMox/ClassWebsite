@@ -1,26 +1,25 @@
-database = require('./models/db')
-ObjectId = require('mongodb').ObjectID;
+// Require Dependencies
+var express = require('express');
+var app = express();
 
-database.getDb(function(db) {
+// Middleware
+app.use(app.router); // you need this line so the .get etc. routes are run and if an error within, then the error is parsed to the ned middleware (your error reporter)
+app.use(function(err, req, res, next) {
+    if(err && err == '403') {
+      console.log("Not Found Error");
+      res.send("Not Found Error");
+    }
+    else
+      next(); // you also need this line
+});
 
-  // db.collection('user', function(err, collection) {
-  //   if (err)
-  //     throw err;
-  //   collection.insert({'name': 'ace', 'post_id': null}, {safe: true}, function(err, record) {
-  //     if (err)
-  //       throw err;
-  //     console.dir(record);
-  //   });
-  // });
+// Routes
+app.get('/', function(request, response) {
+    throw "403";
+    response.send('Hello World!');
+});
 
-  db.collection('post', function(err, collection) {
-    if (err)
-      throw err;
-    collection.insert({'title': 'justforfun', 'author': {'$ref': 'user', '$id': new ObjectId('53109bc88ffbe90b1e314e75')}}, {safe: true}, function(err, record) {
-      if (err)
-        throw err;
-      console.dir(record);
-    });
-  });
-
+// Listen
+app.listen(3000, function() {
+  console.log("Listening on 3000");
 });

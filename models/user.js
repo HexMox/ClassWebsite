@@ -8,8 +8,8 @@
  * info: {}
  * privilege: { readTopics: true,
  *              writeTopics: true,
- *              createQuestionnaire: false,
- *              fillInQuestionnaire: true
+ *              questionnaire: true,  // Allow to fill in questionnaire.
+ *              adminAuth: false
  *            }
  *
  * Note:
@@ -21,9 +21,9 @@ var database = require('./db');
 
 var DEFAULT_PRIVILEGE = {readTopics: true,
                          writeTopics: true,
-                         createQuestionnaire: false,
-                         fillInQuestionnaire: true
-                        }
+                         questionnaire: true,
+                         adminAuth: false,
+                        };
 
 // class User
 // constructor
@@ -69,7 +69,7 @@ User.prototype.save = function(callback) {
   });
 };
 
-User.prototype.getByName = function(name, callback) {
+User.getByName = function(name, callback) {
   database.getDb(function(db) {
     db.collection('users', function(err, collection) {
       if (err) {
@@ -87,7 +87,7 @@ User.prototype.getByName = function(name, callback) {
   });
 };
 
-User.prototype.getById = function(id, callback) {
+User.getById = function(id, callback) {
   database.getDb(function(db) {
     db.collection('users', function(err, collection) {
       if (err) {
@@ -105,7 +105,7 @@ User.prototype.getById = function(id, callback) {
   });
 };
 
-User.prototype.getAll = function(callback) {
+User.getAll = function(callback) {
   // a object contains all msg expect psd
 };
 
@@ -125,13 +125,13 @@ User.prototype.change = function(target, callback) {
  * After delete a user, the topics posted by the user will not be deleted.
  * A solution is that change the `author` into `null`.
  */
-User.prototype.deleteById = function(id, callback) {
+User.deleteById = function(id, callback) {
 }
 
-User.prototype.deleteByName = function(name, callback) {
+User.deleteByName = function(name, callback) {
 }
 
-User.prototype.deleteAll = function(callback) {
+User.deleteAll = function(callback) {
 }
 
 module.exports = User;

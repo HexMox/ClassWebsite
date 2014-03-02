@@ -4,8 +4,8 @@ var User = require('../models/user');
 var questionnaire = require('./questionnaire');
 
 module.exports = function(app) {
-  app.get('/forbidden', forbidHandler);
-  app.get('/404', notFoundHandler);
+  // app.get('/forbidden', forbidHandler);
+  // app.get('/404', notFoundHandler);
 
   app.get('/', index);
   app.get('/index', index);
@@ -23,17 +23,20 @@ module.exports = function(app) {
   app.post('/login', loginHandler);
   app.post('/logout', logoutHandler);
   app.post('/createQuestionnaire', questionnaire.createQuestionnaireHandler);
+
+  // Since this is the last non-error-handling
+  // middleware use(), we assume 404, as nothing else
+  // responded.
+  app.use(function(req, res, next){
+    next({type: '404', message: 'Not Found'});
+  });
+
+  // Use error handlers
+  app.use(logErrors);
+  app.use(errorHandler);
 };
 
 // ******************Common Handlers**********************
-function forbidHandler(req, res) {
-  res.render('403');
-}
-
-function notFoundHandler(req, res) {
-  res.render('404');
-}
-
 function index(req, res) {
   res.render('main_page', {
     user: req.session.user
@@ -65,8 +68,27 @@ function logoutHandler(req, res) {
 
 function checkLogin(req, res, next) {
   if (req.session.user == null) {
-    res.redirect('/');
+    next({type: '403', message: 'You haven\'t login in.'});
   } else {
     next();
   }
+}
+
+function logErrors(err, req, res, next) {
+  console.error(err);
+  next(err);
+}
+
+function errorHandler(err, req, res, next) {
+  if (err.type == '403') {
+    res.status(403);
+    res.render('403', {err: err});
+  }
+  else if (err.type == '404') {
+    res.status(404);
+    res.render('404', {err: err});
+  }
+  // other errors
+  else
+    next();
 }

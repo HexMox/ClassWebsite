@@ -29,10 +29,11 @@ app.use(express.session({
     db: settings.db
   })
 }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 routes(app);
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
+
 app.use(express.logger('dev'));
 
 // development only

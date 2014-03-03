@@ -19,11 +19,12 @@
 
 var database = require('./db');
 
-var DEFAULT_PRIVILEGE = {readTopics: true,
-                         writeTopics: true,
-                         questionnaire: true,
-                         adminAuth: false,
-                        };
+var DEFAULT_PRIVILEGE = {
+  readTopics: true,
+  writeTopics: true,
+  questionnaire: true,
+  adminAuth: false,
+};
 
 // class User
 // constructor

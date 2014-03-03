@@ -6,25 +6,29 @@
 var database = require('./db');
 var User = require('./user');
 
-var ADMIN = new User({id: '88888888',
-                      name: 'admin',
-                      password: 'root',
-                      privilege: {readTopics: true,
-                                  writeTopics: true,
-                                  questionnaire: true,
-                                  adminAuth: false
-                                 }
-                     });
+var ADMIN = new User({
+  id: '88888888',
+  name: 'admin',
+  password: 'root',
+  privilege: {
+    readTopics: true,
+    writeTopics: true,
+    questionnaire: true,
+    adminAuth: false
+  }
+});
 
-var huanglk = new User({id: '12330131',
-                      name: 'huanglk',
-                      password: '8888',
-                      privilege: {readTopics: true,
-                                  writeTopics: true,
-                                  questionnaire: true,
-                                  adminAuth: false
-                                 }
-                     });
+var huanglk = new User({
+  id: '12330131',
+  name: 'huanglk',
+  password: '8888',
+  privilege: {
+    readTopics: true,
+    writeTopics: true,
+    questionnaire: true,
+    adminAuth: false
+  }
+});
 
 var dropCollection = function(collectionName, callback) {
   database.getDb(function(db) {
